@@ -16,10 +16,10 @@ def progress_bar(current, total, msg=None):
 
     sys.stdout.write(' %d/%d' % (current + 1, total))
     sys.stdout.write(' [')
-    for i in range(current_len):
+    for _ in range(current_len):
         sys.stdout.write('=')
     sys.stdout.write('>')
-    for i in range(rest_len):
+    for _ in range(rest_len):
         sys.stdout.write('.')
     sys.stdout.write(']')
 
@@ -28,10 +28,10 @@ def progress_bar(current, total, msg=None):
     LAST_T = current_time
     total_time = current_time - BEGIN_T
 
-    time_used = '  Step: %s' % format_time(step_time)
-    time_used += ' | Tot: %s' % format_time(total_time)
+    time_used = f'  Step: {format_time(step_time)}'
+    time_used += f' | Tot: {format_time(total_time)}'
     if msg:
-        time_used += ' | ' + msg
+        time_used += f' | {msg}'
 
     msg = time_used
     sys.stdout.write(msg)
@@ -58,20 +58,20 @@ def format_time(seconds):
     output = ''
     time_index = 1
     if days > 0:
-        output += str(days) + 'D'
+        output += f'{days}D'
         time_index += 1
     if hours > 0 and time_index <= 2:
-        output += str(hours) + 'h'
+        output += f'{hours}h'
         time_index += 1
     if minutes > 0 and time_index <= 2:
-        output += str(minutes) + 'm'
+        output += f'{minutes}m'
         time_index += 1
     if seconds_final > 0 and time_index <= 2:
-        output += str(seconds_final) + 's'
+        output += f'{seconds_final}s'
         time_index += 1
     if millis > 0 and time_index <= 2:
-        output += str(millis) + 'ms'
+        output += f'{millis}ms'
         time_index += 1
-    if output == '':
+    if not output:
         output = '0ms'
     return output

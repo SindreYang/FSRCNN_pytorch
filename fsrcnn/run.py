@@ -40,7 +40,7 @@ class FSRCNNTrainer(object):
     def save_model(self):
         model_out_path = "model_path.pth"
         torch.save(self.model, model_out_path)
-        print("Checkpoint saved to {}".format(model_out_path))
+        print(f"Checkpoint saved to {model_out_path}")
 
     def train(self):
         self.model.train()
@@ -74,7 +74,7 @@ class FSRCNNTrainer(object):
     def run(self):
         self.build_model()
         for epoch in range(1, self.nEpochs + 1):
-            print("\n===> Epoch {} starts:".format(epoch))
+            print(f"\n===> Epoch {epoch} starts:")
             self.train()
             self.test()
             self.scheduler.step(epoch)
